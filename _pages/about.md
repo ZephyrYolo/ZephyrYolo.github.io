@@ -14,7 +14,7 @@ I am **Xinbo Yu (于馨博)**, an undergraduate student majoring in **Electronic
 My work centers on the intersection of wireless communication, artificial intellengence and optimization theory. My primary research interests include:
 
 *   **Model Collabaration Methods:** Design efficient collaborative framework for end-edge-cloud communication system.
-*   **Agentic AI in Communication:** Develope effective approachs to optimize agentic applications in future 6G systems.
+*   **Agentic AI in Communication:** Develope effective approachs to optimize agentic applications in future 6G system.
 
 ## News
 
