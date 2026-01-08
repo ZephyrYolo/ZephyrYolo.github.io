@@ -23,7 +23,7 @@ repository               : "ZephyrYolo/ZephyrYolo.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "B0018638-1.JPG"
+  avatar           : "B0018638-1.jpg"
   name             : "Xinbo Yu"
   pronouns         : # example: "she/her"  
   bio              : "Undergraduate Student at EECS, Peking University"
