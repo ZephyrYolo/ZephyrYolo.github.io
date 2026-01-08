@@ -16,6 +16,8 @@ My work centers on the intersection of wireless communication, artificial intell
 *   **Model Collabaration Methods:** Design efficient collaborative framework for end-edge-cloud communication system.
 *   **Agentic AI in Communication:** Develope effective approachs to optimize agentic applications in future 6G system.
 
+I love **Photographing**.
+
 ## News
 
 *   **[Dec 2025]** Awarded the **National Scholarship** for the academic year 2024-2025. [Read more](/posts/2025/12/nationalscholarship2025/)
