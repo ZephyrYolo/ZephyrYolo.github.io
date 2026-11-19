@@ -1,0 +1,4 @@
+{% assign contact = site.author %}
+{% if contact.email %}<a href="mailto:{{ contact.email | escape }}"><i class="fas fa-envelope" aria-hidden="true"></i>Email</a>{% endif %}
+{% if contact.googlescholar %}<a href="{{ contact.googlescholar | escape }}"><i class="ai ai-google-scholar" aria-hidden="true"></i>Google Scholar</a>{% endif %}
+{% if contact.orcid %}<a href="{{ contact.orcid | escape }}"><i class="ai ai-orcid" aria-hidden="true"></i>ORCID</a>{% endif %}

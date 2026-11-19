@@ -1,0 +1,9 @@
+<header class="site-banner">
+  <div class="site-banner__main">
+    <h1>{{ page.title | markdownify | strip_html | strip | escape_once }}</h1>
+    {% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}
+  </div>
+  {% if include.icon %}
+    <span class="site-banner__mark" aria-hidden="true"><i class="fas {{ include.icon }}"></i></span>
+  {% endif %}
+</header>

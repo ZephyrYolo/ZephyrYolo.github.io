@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+{% case page.section_name %}
+  {% when 'publications' %}{% assign section_icon = 'fa-file-lines' %}
+  {% when 'news' %}{% assign section_icon = 'fa-calendar-days' %}
+  {% when 'cv' %}{% assign section_icon = 'fa-id-card' %}
+  {% when 'photography' %}{% assign section_icon = 'fa-camera' %}
+{% endcase %}
+
+<main class="site-shell site-section">
+  {% include site-banner.html icon=section_icon %}
+  <div class="site-section__body">
+    {{ content }}
+  </div>
+</main>

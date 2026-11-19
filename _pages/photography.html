@@ -1,0 +1,40 @@
+---
+layout: site-section
+title: "Photography"
+permalink: /photography/
+section_name: photography
+---
+
+{% assign gallery_folder = '/images/photography/' %}
+{% assign folder_length = gallery_folder | size %}
+{% assign gallery_url = gallery_folder | relative_url %}
+{% assign image_extensions = '.avif,.gif,.jpeg,.jpg,.png,.webp' | split: ',' %}
+{% assign files = site.static_files | sort_natural: 'path' %}
+
+{% capture gallery_items %}
+  {% for photo in files %}
+    {% assign folder = photo.path | slice: 0, folder_length %}
+    {% assign extension = photo.extname | downcase %}
+    {% if folder == gallery_folder and image_extensions contains extension %}
+      {% assign photo_url = photo.path | remove_first: gallery_folder | url_encode | replace: '%2F', '/' | replace: '+', '%20' | prepend: gallery_url %}
+      {% assign photo_label = photo.basename | replace: '-', ' ' | replace: '_', ' ' | normalize_whitespace | strip %}
+      <li>
+        <a class="photo-gallery__frame" href="{{ photo_url | escape }}">
+          <img src="{{ photo_url | escape }}" alt="{{ photo_label | default: photo.basename | escape }}" loading="lazy" decoding="async">
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% assign gallery_items = gallery_items | strip %}
+{% if gallery_items == empty %}
+  <div class="photo-gallery__empty">
+    <span class="photo-gallery__viewfinder" aria-hidden="true"><i class="fas fa-camera"></i></span>
+    <p>No photographs yet.</p>
+  </div>
+{% else %}
+  <ul class="photo-gallery" role="list">
+    {{ gallery_items }}
+  </ul>
+{% endif %}

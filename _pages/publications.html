@@ -1,36 +1,40 @@
 ---
-layout: archive
+layout: site-section
 title: "Publications"
+description: "Journal and conference papers on wireless communications, edge intelligence, and agentic AI."
 permalink: /publications/
-author_profile: true
+section_name: publications
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+{% assign publications = site.publications | reverse %}
 
-{% include base_path %}
+<div class="academic-list academic-publications">
+  {% if site.author.googlescholar %}
+    <a class="academic-publications__scholar" href="{{ site.author.googlescholar | escape }}">
+      <i class="ai ai-google-scholar" aria-hidden="true"></i> Google Scholar
+    </a>
+  {% endif %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
+  {% if site.publication_category %}
+    {% for category in site.publication_category %}
+      {% assign category_id = category[0] %}
+      {% assign category_publications = publications | where: 'category', category_id %}
+      {% if category_publications.size > 0 %}
+        <section class="academic-publications__group" aria-labelledby="publications-{{ category_id | slugify }}">
+          <h2 id="publications-{{ category_id | slugify }}">{{ category[1].title | escape }}</h2>
+          <div class="academic-list__entries">
+            {% for post in category_publications %}
+              {% include archive-single.html heading_level=3 %}
+            {% endfor %}
+          </div>
+        </section>
       {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+  {% else %}
+    <div class="academic-list__entries">
+      {% for post in publications %}
+        {% include archive-single.html %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

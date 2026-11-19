@@ -14,3 +14,15 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
+<link rel="stylesheet" href="{{ '/assets/css/academic.css' | relative_url }}">
+{% if page.layout == 'home-profile' %}
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+{% endif %}
+{% case page.section_name %}
+  {% when 'publications', 'news' %}
+    <link rel="stylesheet" href="{{ '/assets/css/academic-lists.css' | relative_url }}">
+  {% when 'cv' %}
+    <link rel="stylesheet" href="{{ '/assets/css/academic-cv.css' | relative_url }}">
+  {% when 'photography' %}
+    <link rel="stylesheet" href="{{ '/assets/css/academic-photography.css' | relative_url }}">
+{% endcase %}

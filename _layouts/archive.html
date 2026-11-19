@@ -12,6 +12,7 @@ layout: default
   {% endunless %}
 {% endif %}
 
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image or page.sidebar %}
 <div id="main" role="main">
   {% include sidebar.html %}
 
@@ -22,3 +23,11 @@ layout: default
     {{ content }}
   </div>
 </div>
+{% else %}
+  <main class="site-shell site-section">
+    {% include site-banner.html %}
+    <div class="site-section__body site-section__body--archive">
+      {{ content }}
+    </div>
+  </main>
+{% endif %}

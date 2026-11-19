@@ -1,0 +1,101 @@
+---
+layout: default
+---
+
+{% assign profile = site.author %}
+
+<main class="academic-home">
+  <div class="site-shell">
+    <section class="home-hero" aria-labelledby="home-name">
+      <div class="home-hero__intro">
+        <div class="home-affiliation">
+          {% if profile.avatar %}
+            {% if profile.avatar contains '://' %}
+              {% assign avatar_url = profile.avatar %}
+            {% else %}
+              {% assign avatar_url = profile.avatar | prepend: '/images/' | relative_url %}
+            {% endif %}
+            <img class="home-affiliation__portrait" src="{{ avatar_url | escape }}" width="64" height="64" alt="" fetchpriority="high">
+          {% endif %}
+          <p><strong>{{ profile.employer | escape }}</strong><span>{{ page.school | escape }}</span></p>
+        </div>
+
+        <h1 id="home-name">{{ profile.name | default: site.title | escape }}</h1>
+        <p class="home-hero__role">{{ page.role | escape }}</p>
+        <p class="home-hero__summary">{{ page.summary | escape }}</p>
+
+        <div class="home-hero__actions">
+          <a class="home-button home-button--primary" href="{{ '/publications/' | relative_url }}"><i class="fas fa-file-lines" aria-hidden="true"></i>Publications</a>
+          <a class="home-button home-button--secondary" href="{{ '/cv/' | relative_url }}">View CV</a>
+        </div>
+      </div>
+
+      <div class="home-network" data-home-network-panel>
+        <p class="home-network__title">End–edge–cloud collaboration</p>
+        <canvas class="home-network__canvas" data-home-network aria-hidden="true"></canvas>
+        <div class="home-network__fallback" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="home-network__label home-network__label--end" aria-hidden="true">End</span>
+        <span class="home-network__label home-network__label--edge" aria-hidden="true">Edge</span>
+        <span class="home-network__label home-network__label--cloud" aria-hidden="true">Cloud</span>
+        <button class="home-network__toggle" type="button" data-network-toggle hidden aria-label="Pause animation">
+          <span data-network-toggle-label>Pause</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="home-contact">
+      {% if profile.location %}
+        <p><i class="fas fa-location-dot" aria-hidden="true"></i>{{ profile.location | escape }}</p>
+      {% endif %}
+      <nav aria-label="Contact and academic profiles">
+        {% include academic-contact-links.html %}
+      </nav>
+    </div>
+
+    <div class="home-main-grid">
+      <section class="home-research" aria-labelledby="home-research-title">
+        <div class="home-section-heading">
+          <h2 id="home-research-title">Research</h2>
+          <p>{{ page.research_intro | escape }}</p>
+        </div>
+
+        <div class="home-research__topics">
+          {% for topic in page.research %}
+            <article class="home-topic">
+              <i class="fas {{ topic.icon | escape }} home-topic__icon" aria-hidden="true"></i>
+              <h3>{{ topic.title | escape }}</h3>
+              <p>{{ topic.description | escape }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="home-news" aria-labelledby="home-news-title">
+        <div class="home-section-heading home-news__heading">
+          <h2 id="home-news-title">News</h2>
+          <a class="home-news__archive" href="{{ '/year-archive/' | relative_url }}">All updates</a>
+        </div>
+
+        <ul class="home-news__list">
+          {% for update in page.news %}
+            <li>
+              <a href="{{ update.url | relative_url }}">
+                <time datetime="{{ update.month | escape }}">{{ update.month | append: '-01' | date: '%b %Y' }}</time>
+                <span>{{ update.title | escape }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+
+    <section class="home-about" aria-labelledby="home-about-title">
+      <h2 id="home-about-title">About me</h2>
+      <div>{{ content }}</div>
+    </section>
+  </div>
+</main>
+
+<script src="{{ '/assets/js/home-network.js' | relative_url }}" defer></script>

@@ -1,5 +1,16 @@
 {% include base_path %}
 
+<div class="site-footer-links">
+  <a href="{{ '/sitemap/' | relative_url }}">Sitemap</a>
+  {% unless page.layout == 'home-profile' %}
+    {% if site.author.email or site.author.googlescholar or site.author.orcid %}
+      <nav aria-label="Contact and academic profiles">
+        {% include academic-contact-links.html %}
+      </nav>
+    {% endif %}
+  {% endunless %}
+</div>
+
 {% if site.author.github or site.author.bitbucket or site.atom_feed.hide != true %}
 <div class="page__footer-follow">
   <ul class="social-icons">

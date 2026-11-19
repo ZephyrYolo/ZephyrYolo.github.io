@@ -1,0 +1,110 @@
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: clamp(0.9rem, 2.2vw, 1.4rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo-gallery > li {
+  min-width: 0;
+  margin: 0;
+}
+
+.photo-gallery__frame {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  padding: clamp(0.25rem, 1vw, 0.6rem);
+  border: 1px solid var(--site-line);
+  border-radius: 0.85rem;
+  background: var(--site-surface);
+  color: var(--site-accent);
+}
+
+.photo-gallery__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.45rem;
+  background: var(--site-bg);
+  object-fit: contain;
+}
+
+.photo-gallery__frame:is(:hover, :focus-visible) {
+  border-color: var(--site-accent);
+}
+
+.photo-gallery__frame:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+}
+
+.photo-gallery__empty {
+  display: grid;
+  min-height: clamp(13rem, 34vw, 22rem);
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  border: 1px solid var(--site-line);
+  border-radius: 0.9rem;
+  background:
+    radial-gradient(ellipse at center, var(--site-accent-surface), transparent 66%),
+    var(--site-surface);
+  color: var(--site-muted);
+  text-align: center;
+}
+
+.photo-gallery__empty p {
+  margin: 0;
+  font-weight: 620;
+}
+
+.photo-gallery__viewfinder {
+  position: relative;
+  display: grid;
+  width: 5.3rem;
+  height: 3.9rem;
+  place-items: center;
+  border: 1px solid var(--site-line);
+  border-radius: 0.75rem;
+  background-color: var(--site-surface);
+  background-image: radial-gradient(var(--site-line) 0.7px, transparent 0.7px);
+  background-size: 0.48rem 0.48rem;
+  color: var(--site-accent);
+  font-size: 1.25rem;
+}
+
+.photo-gallery__viewfinder::before,
+.photo-gallery__viewfinder::after {
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-color: var(--site-accent);
+  border-style: solid;
+  content: '';
+}
+
+.photo-gallery__viewfinder::before {
+  top: 0.48rem;
+  left: 0.48rem;
+  border-width: 1px 0 0 1px;
+}
+
+.photo-gallery__viewfinder::after {
+  right: 0.48rem;
+  bottom: 0.48rem;
+  border-width: 0 1px 1px 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .photo-gallery__frame {
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .photo-gallery__frame:hover {
+    transform: translateY(-2px);
+  }
+}

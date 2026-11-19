@@ -1,0 +1,5 @@
+{%- if include.publication.publication_status -%}
+  {{ include.publication.publication_status }} <i>{{ include.publication.venue }}</i>
+{%- else -%}
+  Published in <i>{{ include.publication.venue }}</i>, {{ include.publication.date | default: "1900-01-01" | date: "%Y" }}
+{%- endif -%}
